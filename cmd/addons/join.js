@@ -1,4 +1,9 @@
 const discord = require("discord.js");
+const fivem = require("discord-fivem-api");
+const fs = require("fs");
+const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
+const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
+
 
 module.exports.run = async (client, message, args) => {
 
