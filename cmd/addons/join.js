@@ -18,9 +18,9 @@ module.exports.run = async (client, message, args) => {
 
 
     var botEmbed = new discord.MessageEmbed()
-        .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
+        .setTitle(`${ip.online}`)
 //        .setDescription(result > 0 ? result : `${ip.no_players}`)
-        .setDescription(`${ip.online}`)
+        .setDescription(`${ip.players} ${server.getPlayersOnline}/${server.getMaxPlayers}`)
 //        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
