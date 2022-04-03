@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
         let result = [];
         let index = 1;
         for (let player of data) {
-            result.catch(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
 
@@ -25,7 +25,8 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
-        .setDescription(players > 0 ? players : `${ip.no_players}`)
+        .setDescription(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`)
+        //        .setDescription(players > 0 ? players : `${ip.no_players}`)
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
