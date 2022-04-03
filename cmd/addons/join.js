@@ -4,8 +4,15 @@ const fs = require("fs");
 const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 //const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
-const playersOnline = await server.getPlayersOnline()
-const maxPlayers = await server.getMaxPlayers()
+const playersOnline = server.getPlayersOnline()
+const maxPlayers = server.getMaxPlayers()
+const players = server.getPlayers().catch((data) =>{
+    let result = [];
+    let index = 1;
+    for (let player of data) {
+        result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+    }
+})
 
 module.exports.run = async (client, message, args) => {
 
@@ -20,8 +27,8 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.online}`)
-//        .setDescription(result > 0 ? result : `${ip.no_players}`)
-        .setDescription(`${ip.players} ${playersOnline}/${maxPlayers}`)
+        .setDescription(players > 0 ? players : `${ip.no_players}`)
+//        .setDescription(`${ip.players} ${playersOnline}/${maxPlayers}`)
 //        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
