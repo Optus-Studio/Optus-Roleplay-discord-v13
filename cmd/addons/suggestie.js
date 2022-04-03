@@ -8,11 +8,17 @@ module.exports.run = async (client, message, args) => {
 
     const msg_suggestie = args.splice(0,args.length).join(" ");
 
-    if(!msg_suggestie) return message.reply(`**${suggestie.no_msg}**`);
+    if(!msg_suggestie) return message.reply(`**${suggestie.no_msg}**`).then(msg => {
+        message.delete()
+        setTimeout(() => msg.delete(), 10000);
+    });
 
     const suggestieChannel = message.member.guild.channels.cache.get(suggestie.channel);
 
-    if(!suggestieChannel) return message.reply(`${suggestie.no_channel}`);
+    if(!suggestieChannel) return message.reply(`${suggestie.no_channel}`).then(msg => {
+        message.delete()
+        setTimeout(() => msg.delete(), 10000);
+    });
 
     const Embed = new discord.MessageEmbed()
     .setTitle(`${suggestie.title} ${message.member.displayName}`)
