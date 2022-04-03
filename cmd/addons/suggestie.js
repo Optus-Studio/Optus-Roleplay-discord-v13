@@ -38,7 +38,17 @@ module.exports.run = async (client, message, args) => {
         setTimeout(() => msg.delete(), 10000);
     });
 
-    return suggestieChannel.send({ embeds: [Embed] });
+    return suggestieChannel.send({ embeds: [Embed] }).then(async msg => {
+ 
+        let reactions = ["✅", "❌"];
+     
+        // We gaan iedere reactie meegegeven onder de reactie en deze daar plaatsen.
+        for (const reaction of reactions) {
+            await msg.react(reaction);
+        }
+     
+    });
+    
 
 }
 
