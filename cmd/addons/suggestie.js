@@ -6,7 +6,7 @@ const suggestie = JSON.parse(fs.readFileSync(`./src/addons/suggestie.json`, "utf
 
 module.exports.run = async (client, message, args) => {
 
-    const msg_suggestie = args.splice(1,args.length).join(" ");
+    const msg_suggestie = args.splice(0,args.length).join(" ");
 
     if(!msg_suggestie) return message.reply(`**${suggestie.no_msg}**`);
 
