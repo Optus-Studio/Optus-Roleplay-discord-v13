@@ -9,9 +9,9 @@ const maxPlayers = server.getMaxPlayers()
 module.exports.run = async (client, message, args) => {
 
     server.getPlayers().then((data) => {
-        let result = [];
-        let index = 1;
-        for (let player of data) {
+        var result = [];
+        var index = 1;
+        for (var player of data) {
             result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
