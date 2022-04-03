@@ -8,14 +8,6 @@ const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
 
 module.exports.run = async (client, message, args) => {
 
-    //Hier mee krijg je de bewooners data.
-    const players = server.getPlayers().catch((data) => {
-        let result = [];
-        for (let player of data) {
-            result.push(`${player.name} | ${player.id} ID\n`);
-        }
-    })
-
     //Hier mee krijg je de aantal bewooners in de stad.
     const playersOnline = await server.getPlayersOnline()
 
@@ -24,7 +16,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
-//        .setDescription(`${players}` > 0 ? `${players}` : `${ip.no_players}`)
+        .setDescription("*Hint*\n *je kan ook de knop hier onder indruken!*")
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
