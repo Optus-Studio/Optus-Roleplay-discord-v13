@@ -4,19 +4,16 @@ const fs = require("fs");
 const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
 
+server.getPlayers().then((data) => {
+    let result = [];
+    let index = 1;
+    for (let player of data) {
+        result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+    }
+    const playersOnline = await server.getPlayersOnline()
+})
+
 module.exports.run = async (client, message, args) => {
-
-
-    server.getPlayers().then((data) => {
-        let result = [];
-        let index = 1;
-        for (let player of data) {
-            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
-        }
-        const playersOnline = await server.getPlayersOnline()
-    })
-
-
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`Players (${data.length}/${playersOnline})`)
