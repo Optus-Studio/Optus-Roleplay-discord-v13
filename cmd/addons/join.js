@@ -11,7 +11,7 @@ const playersOnline = server.getPlayersOnline().catch((data) => {
     let result = [];
     let index = 1;
     for (let player of data) {
-        result.push(`${index++}`)
+        result.push(`${index++}. ${player.count}`)
     }
 })
 
@@ -28,7 +28,7 @@ const players = server.getPlayers().catch((data) =>{
 module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
-        .setTitle(`${ip.players} ${server.getPlayersOnline}/${ip.max_players}`)
+        .setTitle(`${ip.players} ${playersOnline}/${ip.max_players}`)
         .setDescription(players > 0 ? players : `${ip.no_players}`)
 //        .setDescription(`${ip.players} ${playersOnline}/${maxPlayers}`)
 //        .setAuthor(`${ip.online}`)
