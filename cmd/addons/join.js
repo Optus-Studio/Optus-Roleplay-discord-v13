@@ -3,7 +3,7 @@ const fivem = require("discord-fivem-api");
 const fs = require("fs");
 const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
-const playersOnline = await server.getPlayersOnline()
+const playersOnline = server.getPlayersOnline()
 
 module.exports.run = async (client, message, args) => {
 
