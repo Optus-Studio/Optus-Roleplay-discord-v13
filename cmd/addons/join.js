@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
         let result = [];
         let index = 1;
         for (let player of data) {
-            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.catch(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
 
