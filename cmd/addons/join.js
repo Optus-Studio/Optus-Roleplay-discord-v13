@@ -48,7 +48,7 @@ module.exports.run = async (client, message, args) => {
     return message.channel.send({ embeds: [botEmbed], components: [row] }).catch((err) => {
         var errEmbed = new discord.MessageEmbed()
             .setColor("RED")
-            .setAuthor(`${op.ofline}`)
+            .setAuthor(`${ip.ofline}`)
             .setThumbnail(process.env.LOGO)
             .setImage(process.env.BANNER)
             .setTimestamp()
