@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
 
 
     var botEmbed = new discord.MessageEmbed()
-        .setTitle(`${ip.burgers} (${playersOnline}/${maxPlayers})`)
+        .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
 //        .setDescription(result > 0 ? result : `${ip.no_players}`)
         .setDescription(`${ip.online}`)
 //        .setAuthor(`${ip.online}`)
