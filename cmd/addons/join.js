@@ -8,10 +8,19 @@ const maxPlayers = server.getMaxPlayers()
 
 module.exports.run = async (client, message, args) => {
 
+    server.getPlayers().then((data) => {
+        let result = [];
+        let index = 1;
+        for (let player of data) {
+            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+        }
+    })
+
+
     var botEmbed = new discord.MessageEmbed()
-        .setTitle(`Players (${playersOnline}/${maxPlayers})`)
-        .setDescription(result.length > 0 ? result : 'No Players Online!')
-        .setAuthor("Server is online")
+        .setTitle(`${ip.burgers} (${playersOnline}/${maxPlayers})`)
+        .setDescription(result.length > 0 ? result : `${ip.no_players}`)
+        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
         .setImage(process.env.BANNER)
@@ -34,7 +43,7 @@ module.exports.run = async (client, message, args) => {
     return message.channel.send({ embeds: [botEmbed], components: [row] }).catch((err) => {
         var errEmbed = new discord.MessageEmbed()
             .setColor("RED")
-            .setAuthor("Server is offline")
+            .setAuthor(`${op.ofline}`)
             .setThumbnail(process.env.LOGO)
             .setImage(process.env.BANNER)
             .setTimestamp()

@@ -1,4 +1,9 @@
 {
     "server_ip": "game-02.slimgame.eu",
-    "server_port": "9105"
+    "server_port": "9105",
+
+    "no_players": "Geen Bewooners In De Stad.",
+    "players": "Burgers:",
+    "online": "Stad Is Open!",
+    "ofline": "Stad Is Dicht!"
 }
