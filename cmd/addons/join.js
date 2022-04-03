@@ -10,16 +10,16 @@ module.exports.run = async (client, message, args) => {
 
     server.getPlayers().then((data) => {
         let result = [];
-        let join = 1;
+        let index = 1;
         for (let player of data) {
-            result.push(`${join++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
 
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.burgers} (${playersOnline}/${maxPlayers})`)
-        .setDescription(result.length > 0 ? result : `${ip.no_players}`)
+        .setDescription(result > 0 ? result : `${ip.no_players}`)
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
