@@ -14,11 +14,39 @@ module.exports.run = async (client, message, args) => {
     //Hier mee krijg je de Max aantal bewooners in de stad.
     const maxPlayers = await server.getMaxPlayers()
 
-    const players = (playersOnline == 0 ? `/ ${maxPlayers}` : `${ip.no_players}`)
+    if (playersOnline > 0) {
 
-    var botEmbed = new discord.MessageEmbed()
+        var onlineEmbed = new discord.MessageEmbed()
+                .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
+        //        .setTitle(`${ip.players} ${players}`)
+                .setDescription("*Hint*\n *je kan ook de knop hier onder indruken!*")
+                .setAuthor(`${ip.online}`)
+                .setColor(process.env.COLLOR)
+                .setThumbnail(process.env.LOGO)
+                .setImage(process.env.BANNER)
+                .setTimestamp()
+                .setFooter("Join Optus Roleplay")
+        
+            const row = new discord.MessageActionRow().addComponents(
+        
+                new discord.MessageButton()
+                    .setLabel("Join Gelijk")
+                    .setStyle("LINK")
+                    .setEmoji("🎮")
+                    .setURL("https://cfx.re/join/lxz7q4")
+        
+            );
+
+            message.channel.send({ embeds: [onlineEmbed], components: [row] }).then(msg => {
+                message.delete()
+                setTimeout(() => msg.delete(), 20000);
+            });
+
+    } else if (playersOnline == 0) {
+
+        var oflineEmbed = new discord.MessageEmbed()
 //        .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
-        .setTitle(`${ip.players} ${players}`)
+        .setTitle(`${ip.players} ${ip.no_players}`)
         .setDescription("*Hint*\n *je kan ook de knop hier onder indruken!*")
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
@@ -37,19 +65,12 @@ module.exports.run = async (client, message, args) => {
 
     );
 
-    return message.channel.send({ embeds: [botEmbed], components: [row] }).catch((err) => {
-        var errEmbed = new discord.MessageEmbed()
-            .setColor("RED")
-            .setAuthor(`${ip.ofline}`)
-            .setThumbnail(process.env.LOGO)
-            .setImage(process.env.BANNER)
-            .setTimestamp()
-            .setFooter("Join Optus Roleplay")
-
-    }).then(msg => {
+    message.channel.send({ embeds: [oflineEmbed], components: [row] }).then(msg => {
         message.delete()
         setTimeout(() => msg.delete(), 20000);
     });
+
+    }
 
 }
 
