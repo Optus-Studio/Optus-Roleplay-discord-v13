@@ -4,20 +4,12 @@ const fs = require("fs");
 const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
 const playersOnline = server.getPlayersOnline()
+const maxPlayers = server.getMaxPlayers()
 
 module.exports.run = async (client, message, args) => {
 
-    server.getPlayers().then((data) => {
-        let result = [];
-        let index = 1;
-        for (let player of data) {
-            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
-        }
-    })
-
-
     var botEmbed = new discord.MessageEmbed()
-        .setTitle(`Players (${data.length}/${playersOnline})`)
+        .setTitle(`Players (${playersOnline}/${maxPlayers})`)
         .setDescription(result.length > 0 ? result : 'No Players Online!')
         .setAuthor("Server is online")
         .setColor(process.env.COLLOR)
@@ -26,7 +18,6 @@ module.exports.run = async (client, message, args) => {
         .setTimestamp()
         .setFooter("Join Optus Roleplay")
         .addFields(
-            { name: "**S**", value: "Start **FiveM**" },
             { name: "*Hint*", value: "*je kan ook de knop hier onder indruken!*" },
         )
 
