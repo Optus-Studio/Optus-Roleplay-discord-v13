@@ -6,11 +6,13 @@ const suggestie = JSON.parse(fs.readFileSync(`./src/addons/suggestie.json`, "utf
 
 module.exports.run = async (client, message, args) => {
 
-    const msg_suggestie = args.splice(1,args.length).join(" ") || `**${suggestie.no_msg}**`;
+    const msg_suggestie = args.splice(1,args.length).join(" ");
+
+    if(!msg_suggestie) return message.reply(`**${suggestie.no_msg}**`);
 
     const suggestieChannel = message.member.guild.channels.cache.get(suggestie.channel);
 
-    if(!suggestieChannel) return message.reply(`${suggestie.no_msg}`);
+    if(!suggestieChannel) return message.reply(`${suggestie.no_channel}`);
 
     message.delete();
 
@@ -31,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     .setImage(process.env.BANNER)
     .setTimestamp()
     .setFooter(`${suggestie.footer}`)
-    .addField(`${suggestie.suggestie_chat}`, `<#${suggestieChannel}>`)
+    .addField(`${suggestie.suggestie_chat}`, `${suggestieChannel}`)
 
     message.channel.send({ embeds: [sucsesEmbed] }).then(msg => {
         message.delete()
