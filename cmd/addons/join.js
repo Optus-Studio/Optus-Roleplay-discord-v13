@@ -23,9 +23,6 @@ module.exports.run = async (client, message, args) => {
         .setImage(process.env.BANNER)
         .setTimestamp()
         .setFooter("Join Optus Roleplay")
-        .addFields(
-            { name: "*Hint*", value: "*je kan ook de knop hier onder indruken!*" },
-        )
 
     const row = new discord.MessageActionRow().addComponents(
 
