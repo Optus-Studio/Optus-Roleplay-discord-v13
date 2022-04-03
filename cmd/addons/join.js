@@ -2,7 +2,8 @@ const discord = require("discord.js");
 const fivem = require("discord-fivem-api");
 const fs = require("fs");
 const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
-const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
+//const server = new fivem.DiscordFivemApi(`${ip.server_ip}:${ip.server_port}`);
+const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
 const playersOnline = server.getPlayersOnline()
 const maxPlayers = server.getMaxPlayers()
 
@@ -20,7 +21,7 @@ module.exports.run = async (client, message, args) => {
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.online}`)
 //        .setDescription(result > 0 ? result : `${ip.no_players}`)
-        .setDescription(`${ip.players} ${server.getPlayersOnline}/${server.getMaxPlayers}`)
+        .setDescription(`${ip.players} ${playersOnline}/${maxPlayers}`)
 //        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
