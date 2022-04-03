@@ -12,15 +12,16 @@ module.exports.run = async (client, message, args) => {
         let result = [];
         let index = 1;
         for (let player of data) {
-           const result = (`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
 
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.burgers} (${playersOnline}/${maxPlayers})`)
-        .setDescription(result > 0 ? result : `${ip.no_players}`)
-        .setAuthor(`${ip.online}`)
+//        .setDescription(result > 0 ? result : `${ip.no_players}`)
+        .setDescription(`${ip.online}`)
+//        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
         .setImage(process.env.BANNER)
