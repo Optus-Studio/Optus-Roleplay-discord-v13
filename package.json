@@ -8,13 +8,15 @@
     "start": "nodemon"
   },
   "keywords": [
-    "discord", "ADMIN"
+    "discord",
+    "ADMIN"
   ],
   "author": "𝕭𝖗𝖞𝖆𝖓#6694",
   "slimhost": "https://Slimhost.nl",
   "gitrepo": "https://github.com/SlimHostdev/discord_v13_main_bot",
   "license": "ISC",
   "dependencies": {
+    "discord-fivem-api": "^1.0.6",
     "discord.js": "^13.3.1",
     "dotenv-flow": "^3.2.0",
     "mysql": "^2.18.1"
