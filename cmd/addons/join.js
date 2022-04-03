@@ -7,7 +7,7 @@ const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
 
 //Hier mee krijg je de aantal bewooners in de stad.
-const playersOnline = server.getPlayersOnline().catch((data) => {
+const playersOnline = server.getPlayers().catch((data) => {
     let result = [];
     let index = 1;
     for (let player of data) {
