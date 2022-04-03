@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
     const playersOnline = await server.getPlayersOnline()
 
     //Hier mee krijg je de Max aantal bewooners in de stad.
-    const maxPlayers = await server.getPlayersOnline()
+    const maxPlayers = await server.getMaxPlayers()
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
