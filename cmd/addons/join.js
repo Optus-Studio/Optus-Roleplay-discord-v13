@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
         .setTimestamp()
         .setFooter("Join Optus Roleplay")
         .addFields(
-            { name: "Burger Info:", value: `${player.name} | ${player.id} ID | ${player.ping} ping\n`},
+            { name: "Burger Info:", value: players > 0 ? players : `${ip.no_players}`},
             { name: "*Hint*", value: "*je kan ook de knop hier onder indruken!*" },
         )
 
