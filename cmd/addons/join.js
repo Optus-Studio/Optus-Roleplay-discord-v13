@@ -7,13 +7,13 @@ const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
 
 //Hier mee krijg je de aantal bewooners in de stad.
-const playersOnline = server.getPlayers().catch((data) => {
-    let result = [];
-    let index = 1;
-    for (let player of data) {
-        result.push(`${index++}. ${player.count}`)
-    }
-})
+//const playersOnline = server.getPlayersOnline().catch((data) => {
+//    let result = [];
+//    let index = 1;
+//    for (let player of data) {
+//        result.push(`${index++}. ${player.count}`)
+//    }
+//})
 
 
 //Hier mee krijg je de bewooners data.
@@ -27,11 +27,12 @@ const players = server.getPlayers().catch((data) =>{
 
 module.exports.run = async (client, message, args) => {
 
+    const playersOnline = await server.getPlayersOnline()
+
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${ip.max_players}`)
         .setDescription(players > 0 ? players : `${ip.no_players}`)
-//        .setDescription(`${ip.players} ${playersOnline}/${maxPlayers}`)
-//        .setAuthor(`${ip.online}`)
+        .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
         .setImage(process.env.BANNER)
