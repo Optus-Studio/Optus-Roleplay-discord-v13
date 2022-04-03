@@ -14,8 +14,6 @@ module.exports.run = async (client, message, args) => {
 
     if(!suggestieChannel) return message.reply(`${suggestie.no_channel}`);
 
-    message.delete();
-
     const Embed = new discord.MessageEmbed()
     .setTitle(`${suggestie.title} ${message.member.displayName}`)
     .setFooter(message.member.displayName, message.author.displayAvatarURL)
