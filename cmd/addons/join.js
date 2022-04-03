@@ -6,16 +6,16 @@ const ip = JSON.parse(fs.readFileSync("./src/addons/fivem-ip.json", "utf-8"));
 //Hier mee haal je het ip op uit /src/addons/fivem-ip.json
 const server = new fivem.DiscordFivemApi(`${ip.server_ip}`);
 
-//Hier mee krijg je de bewooners data.
-const players = server.getPlayers().catch((data) => {
-    let result = [];
-    let index = 1;
-    for (let player of data) {
-        result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
-    }
-})
-
 module.exports.run = async (client, message, args) => {
+
+    //Hier mee krijg je de bewooners data.
+    const players = server.getPlayers().catch((data) => {
+        let result = [];
+        let index = 1;
+        for (let player of data) {
+            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+        }
+    })
 
     //Hier mee krijg je de aantal bewooners in de stad.
     const playersOnline = await server.getPlayersOnline()
