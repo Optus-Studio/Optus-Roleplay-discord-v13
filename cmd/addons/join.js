@@ -10,9 +10,9 @@ module.exports.run = async (client, message, args) => {
 
     server.getPlayers().then((data) => {
         let result = [];
-        let index = 1;
+        let join = 1;
         for (let player of data) {
-            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.push(`${join++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
         }
     })
 
