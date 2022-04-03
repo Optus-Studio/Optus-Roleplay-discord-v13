@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
-        .setDescription(players > 0 ? players : `${ip.no_players}`)
+//        .setDescription(players > 0 ? players : `${ip.no_players}`)
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
@@ -33,7 +33,6 @@ module.exports.run = async (client, message, args) => {
         .setTimestamp()
         .setFooter("Join Optus Roleplay")
         .addFields(
-            { name: "Burger Info:", value: players > 0 ? players : `${ip.no_players}`},
             { name: "*Hint*", value: "*je kan ook de knop hier onder indruken!*" },
         )
 
