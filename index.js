@@ -168,7 +168,7 @@ client.once("ready", () => {
     console.log([`${language.bot_id} ${process.env.BOTID}`]);
     console.log([`${language.bot_preffix} ${process.env.PREFFIX}`]);
     console.log([`${language.bot_language} ${process.env.LANGUAGE}`]);
-    console.log([`${language.bot_users} ${client.users.cache.size}`]);
+    console.log([`${language.bot_users} ${guild.memberCount}`]);
     console.log([`${language.bot_channels} ${client.channels.cache.size}`]);
     console.log('<---------------------------------------------------------------------------------------------------------------------->',);
     console.log([`${language.bot_mysql}`]);
