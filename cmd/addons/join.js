@@ -11,9 +11,8 @@ module.exports.run = async (client, message, args) => {
     //Hier mee krijg je de bewooners data.
     const players = server.getPlayers().catch((data) => {
         let result = [];
-        let index = 1;
         for (let player of data) {
-            result.push(`${index++}. ${player.name} | ${player.id} ID | ${player.ping} ping\n`);
+            result.push(`${player.name} | ${player.id} ID\n`);
         }
     })
 
@@ -25,7 +24,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle(`${ip.players} ${playersOnline}/${maxPlayers}`)
-//        .setDescription(players > 0 ? players : `${ip.no_players}`)
+        .setDescription(players > 0 ? players : `${ip.no_players}`)
         .setAuthor(`${ip.online}`)
         .setColor(process.env.COLLOR)
         .setThumbnail(process.env.LOGO)
